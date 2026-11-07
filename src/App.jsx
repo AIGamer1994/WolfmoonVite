@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 import { unstable_batchedUpdates } from 'react-dom';
+=======
+import ReactDOM from 'react-dom/client';
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
 import './finale.jsx';
 import './cards.jsx';
 
@@ -197,6 +201,7 @@ const LocalPlayerContext = React.createContext(0);
 
         function App() {
           const [version] = useState('v0.0.21');
+<<<<<<< HEAD
           // 牌桌設計尺寸（約 9:16）；矮／窄視窗用 transform 整桌等比縮放，卡牌一併縮小
           const GAME_DESIGN_W = 390;
           const GAME_DESIGN_H = 693;
@@ -214,6 +219,8 @@ const LocalPlayerContext = React.createContext(0);
             window.addEventListener('resize', update);
             return () => window.removeEventListener('resize', update);
           }, []);
+=======
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
           const [screen, setScreen] = useState('home');
           const [displayName, setDisplayName] = useState(() => safeStorageGet('wolfmoon.displayName') || '');
           const [firebaseUser, setFirebaseUser] = useState(null);
@@ -645,7 +652,11 @@ const LocalPlayerContext = React.createContext(0);
           const humanPlayerName = (players.find(p => p.id === humanPlayerId) || {}).name || '你';
           // D／E 其他玩家顯示序：由左至右＝下一位 ➜ … ➜ 上一位（自己不顯示；最右＝上家、最左＝下家）
           const otherPlayersOrdered = (() => {
+<<<<<<< HEAD
             const list = Array.isArray(players) ? players : [];
+=======
+            const list = players || [];
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
             const n = list.length;
             if (n <= 1) return [];
             const myIdx = list.findIndex(p => p.id === humanPlayerId);
@@ -1360,7 +1371,11 @@ const LocalPlayerContext = React.createContext(0);
             lockRef.current = false;
             pendingArenaCardRef.current = null;
             reserveDrawRef.current = null;
+<<<<<<< HEAD
             unstable_batchedUpdates(() => {
+=======
+            ReactDOM.unstable_batchedUpdates(() => {
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
               setGameReady(false);
               setGameOver(false);
               setWinnerInfo(null);
@@ -1505,7 +1520,11 @@ const LocalPlayerContext = React.createContext(0);
               currentTurnIndex: snapshot.currentTurnIndex || 0,
               witchTargetOwner: snapshot.witchTargetOwner || null,
             };
+<<<<<<< HEAD
             unstable_batchedUpdates(() => {
+=======
+            ReactDOM.unstable_batchedUpdates(() => {
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
               setPlayers(normalizedPlayers);
               setPlayerHands(snapshot.playerHands || {});
               setDeck(snapshot.deck || []);
@@ -1543,6 +1562,7 @@ const LocalPlayerContext = React.createContext(0);
               setBroadcastPrivate(snapshot.broadcastPrivate || null);
               setHistoryLogs(snapshot.historyLogs || []);
               setGameOver(!!snapshot.gameOver);
+<<<<<<< HEAD
               setWinnerInfo((() => {
                 const w = snapshot.winnerInfo || null;
                 if (!w) return null;
@@ -1551,6 +1571,9 @@ const LocalPlayerContext = React.createContext(0);
                 }
                 return w;
               })());
+=======
+              setWinnerInfo(snapshot.winnerInfo || null);
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
               setWins(snapshot.wins || {});
               if (!snapshot.gameOver) setVictoryDismissed(false); // 「返回牌桌查看」只屬於本機，不同步
               // 不在此強制 victoryReady：留給 gameOver effect 等終局動畫（狼月等）播完
@@ -3448,15 +3471,26 @@ const LocalPlayerContext = React.createContext(0);
             const totalPlayers = humans.length + aiCount;
             const isHost = !!(roomData && firebaseUser && roomData.hostUid === firebaseUser.uid);
             return (
+<<<<<<< HEAD
               <div className="lobby-shell h-[100dvh] w-screen bg-slate-950 text-slate-100 overflow-y-auto overflow-x-hidden">
                 <div className="w-full max-w-md mx-auto min-h-full flex flex-col justify-center p-4 box-border">
                   <div className="text-center mb-4 shrink-0">
                     <div className="text-4xl mb-1">🌙</div>
+=======
+              <div className="min-h-[100dvh] w-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4">
+                <div className="w-full max-w-md">
+                  <div className="text-center mb-6">
+                    <div className="text-4xl mb-2">🌙</div>
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
                     <h1 className="text-3xl font-black tracking-widest text-amber-300">狼月</h1>
                     <p className="text-xs text-slate-400 mt-1">Wolf Moon · 線上多人版</p>
                     <p className="text-[10px] font-mono font-bold text-cyan-400/90 mt-1.5 tracking-tight">{version}</p>
                   </div>
+<<<<<<< HEAD
                   <div className="flex items-center justify-center gap-2 mb-3 text-[10px] font-bold shrink-0">
+=======
+                  <div className="flex items-center justify-center gap-2 mb-5 text-[10px] font-bold">
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
                     {['1 名稱／房間', '2 等待大廳', '3 遊戲'].map((label, index) => (
                       <div key={label} className={`rounded-full px-2.5 py-1 border ${index === (screen === 'home' ? 0 : 1) ? 'border-amber-400/70 bg-amber-500/15 text-amber-200' : 'border-slate-700 text-slate-500'}`}>{label}</div>
                     ))}
@@ -3533,7 +3567,11 @@ const LocalPlayerContext = React.createContext(0);
                             </div>
                           </div>
                         )}
+<<<<<<< HEAD
                         <div className="lobby-player-list mt-2 space-y-2 max-h-[40vh] overflow-y-auto pr-0.5 scrollbar-none">
+=======
+                        <div className="mt-2 space-y-2 max-h-[40vh] overflow-y-auto pr-0.5 scrollbar-none">
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
                           {humans.map(person => (
                             <div key={person.uid} className="flex items-center justify-between rounded-lg bg-slate-800/70 px-3 py-2 text-sm">
                               <span className="truncate">{person.name}</span>
@@ -3547,9 +3585,13 @@ const LocalPlayerContext = React.createContext(0);
                           ))}
                         </div>
                         {isHost && roomData.status === 'lobby' && (
+<<<<<<< HEAD
                           <div className="lobby-start-bar sticky bottom-0 -mx-1 mt-4 bg-slate-900/95 pt-2 pb-1 z-10">
                             <button onClick={startOnlineGame} disabled={totalPlayers < 3 || totalPlayers > 6} className="w-full rounded-xl bg-emerald-500 py-3 text-sm font-black text-slate-950 disabled:cursor-not-allowed disabled:opacity-35 active:scale-95">開始遊戲</button>
                           </div>
+=======
+                          <button onClick={startOnlineGame} disabled={totalPlayers < 3 || totalPlayers > 6} className="w-full mt-4 rounded-xl bg-emerald-500 py-3 text-sm font-black text-slate-950 disabled:cursor-not-allowed disabled:opacity-35">開始遊戲</button>
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
                         )}
                         {roomData.status === 'playing' && (
                           <div className="mt-4 space-y-2">
@@ -3592,15 +3634,25 @@ const LocalPlayerContext = React.createContext(0);
           const visibleWatchNote = watchNote?.byPlayer
             ? watchNote.byPlayer[humanPlayerId] || null
             : (watchNote?.ownerId === humanPlayerId ? watchNote : null);
+<<<<<<< HEAD
           const visibleHistoryLogs = (Array.isArray(historyLogs) ? historyLogs : []).map(log => {
+=======
+          const visibleHistoryLogs = historyLogs.map(log => {
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
             const privateView = log.privateView && log.privateView.playerIds?.includes(humanPlayerId) ? log.privateView : null;
             const privateFx = log.privateFx?.privateTo?.includes(humanPlayerId) ? log.privateFx : null;
             const legacySecret = !log.privateView && PRIVATE_TEXT_PATTERN.test(`${log.action || ''} ${log.result || log.card || ''}`);
             const personalizedResult = privateView
               ? (privateView.swapMeta
+<<<<<<< HEAD
                   ? formatSwapResultForViewer(String(privateView.result || '').split('｜')[0], privateView.swapMeta, humanPlayerId)
                   : privateView.drunkMeta
                     ? formatDrunkResultForViewer(String(privateView.result || '').split('｜')[0], privateView.drunkMeta, humanPlayerId)
+=======
+                  ? formatSwapResultForViewer(privateView.result.split('｜')[0], privateView.swapMeta, humanPlayerId)
+                  : privateView.drunkMeta
+                    ? formatDrunkResultForViewer(privateView.result.split('｜')[0], privateView.drunkMeta, humanPlayerId)
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
                     : privateView.result)
               : (legacySecret ? '私密行動已完成' : log.result);
             return {
@@ -3631,6 +3683,7 @@ const LocalPlayerContext = React.createContext(0);
           }
 
           return (
+<<<<<<< HEAD
             <div className="game-shell text-slate-100 select-none touch-manipulation pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]">
               <div
                 className="game-scale-frame"
@@ -3645,6 +3698,11 @@ const LocalPlayerContext = React.createContext(0);
                   transformOrigin: 'top left',
                 }}
               >
+=======
+            <div className="min-h-[100dvh] h-[100dvh] w-screen flex flex-col justify-between overflow-hidden bg-slate-950 text-slate-100 select-none touch-manipulation pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]">
+              
+              <div className="mobile-container h-full w-full max-w-[480px] mx-auto flex flex-col justify-between bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 relative">
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
 
                 {/* A區: 版本設定區 */}
                 <header className="h-[4.5%] min-h-[32px] bg-slate-900/90 backdrop-blur border-b border-cyan-900/40 px-3 flex items-center justify-between z-[80] shrink-0">
@@ -3726,21 +3784,33 @@ const LocalPlayerContext = React.createContext(0);
                   <div className="flex items-center space-x-1">
                     <div className="flex items-center justify-center h-[22px] space-x-1 bg-slate-900/90 border border-cyan-500/40 px-2 rounded-full text-[9.5px] shadow">
                       <i className="fa-solid fa-box-archive text-cyan-400"></i>
+<<<<<<< HEAD
                       <span className="font-bold text-cyan-300">備用 <span className="font-mono text-cyan-400">{(reserveCards || []).filter(Boolean).length}</span></span>
+=======
+                      <span className="font-bold text-cyan-300">備用 <span className="font-mono text-cyan-400">{reserveCards.filter(Boolean).length}</span></span>
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
                     </div>
                     <button
                       onClick={() => { setCenterPickMode(false); setIsCenterCardsModalOpen(true); }}
                       className="flex items-center justify-center h-[22px] space-x-1 bg-slate-900/90 border border-amber-500/50 hover:border-amber-400 px-2 rounded-full text-[9.5px] shadow active:scale-95 transition-all cursor-pointer"
                     >
                       <i className="fa-solid fa-eye text-amber-400"></i>
+<<<<<<< HEAD
                       <span className="font-bold text-amber-300">暗牌 <span className="font-mono text-amber-400">{(centerCards || []).filter(Boolean).length}</span></span>
+=======
+                      <span className="font-bold text-amber-300">暗牌 <span className="font-mono text-amber-400">{centerCards.filter(Boolean).length}</span></span>
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
                     </button>
                     <button
                       onClick={() => setIsDeckModalOpen(true)}
                       className="flex items-center justify-center h-[22px] space-x-1 bg-slate-900/90 border border-amber-500/50 hover:border-amber-400 px-2 rounded-full text-[9.5px] shadow active:scale-95 transition-all cursor-pointer"
                     >
                       <i className="fa-solid fa-layer-group text-amber-400"></i>
+<<<<<<< HEAD
                       <span className="font-bold text-amber-300">牌庫 <span className="font-mono text-amber-400">{(deck || []).length}</span></span>
+=======
+                      <span className="font-bold text-amber-300">牌庫 <span className="font-mono text-amber-400">{deck.length}</span></span>
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
                     </button>
                   </div>
                 </div>
@@ -3880,7 +3950,11 @@ const LocalPlayerContext = React.createContext(0);
                           <div className="text-[9.5px] font-black text-amber-300 mb-1">中央暗牌</div>
                           <div className="flex flex-wrap gap-x-2 gap-y-1">
                             {[0, 1, 2].map(i => (
+<<<<<<< HEAD
                               <span key={i} className="flex items-center gap-1"><span className="text-slate-400">暗牌{i + 1}</span>{revealChip((centerCards || [])[i], i)}</span>
+=======
+                              <span key={i} className="flex items-center gap-1"><span className="text-slate-400">暗牌{i + 1}</span>{revealChip(centerCards[i], i)}</span>
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
                             ))}
                           </div>
                         </div>
@@ -3888,7 +3962,11 @@ const LocalPlayerContext = React.createContext(0);
                           <div className="text-[9.5px] font-black text-cyan-300 mb-1">備用牌堆</div>
                           <div className="flex flex-wrap gap-x-2 gap-y-1">
                             {[0, 1].map(i => (
+<<<<<<< HEAD
                               <span key={i} className="flex items-center gap-1"><span className="text-slate-400">備用{i + 1}</span>{revealChip((reserveCards || [])[i], i)}</span>
+=======
+                              <span key={i} className="flex items-center gap-1"><span className="text-slate-400">備用{i + 1}</span>{revealChip(reserveCards[i], i)}</span>
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
                             ))}
                           </div>
                         </div>
@@ -3990,7 +4068,11 @@ const LocalPlayerContext = React.createContext(0);
                 </main>
 
                 {/* F區: 手牌區（自己頭像固定左上） */}
+<<<<<<< HEAD
                 <footer className="hand-dock h-[30%] min-h-[210px] bg-gradient-to-t from-slate-950 via-slate-900 to-slate-950 border-t border-slate-800 p-2 relative shrink-0 flex items-center justify-center">
+=======
+                <footer className="h-[30%] min-h-[210px] bg-gradient-to-t from-slate-950 via-slate-900 to-slate-950 border-t border-slate-800 p-2 relative shrink-0 flex items-center justify-center">
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
                   {gameOver && victoryDismissed && (
                     <div className="absolute inset-0 z-40 flex items-center justify-center bg-slate-950/90">
                       <button onClick={handleNextGame} disabled={!canStartNextGame || nextGameBusy || (onlineSession && iAmReadyNext)} className="flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 text-base font-black px-8 py-3 rounded-2xl shadow-lg active:scale-95 animate-pulse disabled:cursor-not-allowed disabled:opacity-60">
@@ -4189,7 +4271,10 @@ const LocalPlayerContext = React.createContext(0);
                                       </div>
                 </footer>
               </div>
+<<<<<<< HEAD
               </div>
+=======
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
 
               {/* 互動彈窗: 人類玩家發動能力標的與數值選擇 */}
               {interactionModal && (
@@ -4253,7 +4338,11 @@ const LocalPlayerContext = React.createContext(0);
                     {winnerInfo.matchWinners && winnerInfo.matchWinners.length > 0 && (
                       <p className="text-[11px] text-amber-300 font-black mb-3"><i className="fa-solid fa-moon mr-1"></i>【{winnerInfo.matchWinners.join(' & ')}】累計 {winnerInfo.winsNeeded || 2} 個月亮標記，贏得整場！</p>
                     )}
+<<<<<<< HEAD
                     {winnerInfo.scores && Array.isArray(winnerInfo.scores.rows) && winnerInfo.scores.rows.length > 0 && (
+=======
+                    {winnerInfo.scores && winnerInfo.scores.rows.length > 0 && (
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
                       <div className="text-left bg-slate-900/70 border border-slate-700 rounded-lg p-2 mb-3 space-y-1">
                         <div className="text-[10px] font-black text-cyan-300">{winnerInfo.scores.title}</div>
                         {winnerInfo.scores.rows.map(r => (

@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 import { createPortal } from 'react-dom';
+=======
+import ReactDOM from 'react-dom';
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
 import './cards.css';
 
 const { useState, useEffect, useMemo, useRef } = React;
@@ -270,6 +274,7 @@ const { useState, useEffect, useMemo, useRef } = React;
         // 最終比點數動畫：entries＝[{ p, card, base, mods:[{label}], final }]（座位順序）；
         // 由低到高逐一翻牌，最後兩位之間多停頓，再亮出勝者。時間單位＝秒（baseDur／duration 為毫秒）
         function buildScoreFx(entries, mode, winnerIds, winText) {
+<<<<<<< HEAD
           const list = Array.isArray(entries) ? entries : [];
           const n = list.length;
           // 一般結算：由低到高翻牌；乞丐之王：先翻完所有手牌，最後才揭示「乞丐之王獲勝」
@@ -279,6 +284,16 @@ const { useState, useEffect, useMemo, useRef } = React;
             const k = order.findIndex(o => o.i === i);
             const t = t0 + k * step + (n > 1 && k === n - 1 ? 0.9 : 0);
             return { ...e, t, win: mode === 'beggar' ? false : (winnerIds || []).includes(e.p && e.p.id), winLate: (winnerIds || []).includes(e.p && e.p.id) };
+=======
+          const n = entries.length;
+          // 一般結算：由低到高翻牌；乞丐之王：先翻完所有手牌，最後才揭示「乞丐之王獲勝」
+          const order = entries.map((e, i) => ({ i, f: e.final })).sort((a, b) => a.f - b.f || a.i - b.i);
+          const t0 = 1.3, step = 1.1;
+          const rows = entries.map((e, i) => {
+            const k = order.findIndex(o => o.i === i);
+            const t = t0 + k * step + (n > 1 && k === n - 1 ? 0.9 : 0);
+            return { ...e, t, win: mode === 'beggar' ? false : winnerIds.includes(e.p.id), winLate: winnerIds.includes(e.p.id) };
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
           });
           const tLast = Math.max(...rows.map(r => r.t), t0);
           const anyMods = rows.some(r => r.mods && r.mods.length);
@@ -295,9 +310,14 @@ const { useState, useEffect, useMemo, useRef } = React;
 
         function Avatar({ p, size = 'w-11 h-11', glow = '' }) {
           const [bad, setBad] = React.useState(false);
+<<<<<<< HEAD
           if (!p) return <div className={`${size} rounded-full bg-slate-700 p-0.5 shadow shrink-0 ${glow}`} />;
           return (
             <div className={`${size} rounded-full bg-gradient-to-tr ${p.gradient || 'from-slate-600 to-slate-400'} p-0.5 shadow shrink-0 ${glow}`}>
+=======
+          return (
+            <div className={`${size} rounded-full bg-gradient-to-tr ${p.gradient} p-0.5 shadow shrink-0 ${glow}`}>
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
               {bad
                 ? <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-[0.9em] leading-none">{p.emoji}</div>
                 : <img src={`https://api.dicebear.com/7.x/bottts/svg?seed=${p.seed}`} alt={p.name} onError={() => setBad(true)} className="w-full h-full rounded-full bg-slate-900" />}
@@ -525,7 +545,11 @@ const { useState, useEffect, useMemo, useRef } = React;
                 <div className="text-center mb-1" style={an('fxFadeUp', 0.4, 0)}>
                   <div className="text-sm font-black text-amber-200 tracking-widest"><i className="fa-solid fa-hourglass-end mr-1"></i>牌庫耗盡・{fx.mode === 'beggar' ? '乞丐之王檢定' : '最終結算'}</div>
                 </div>
+<<<<<<< HEAD
                 {(fx.rows || []).map((r, k) => {
+=======
+                {fx.rows.map((r, k) => {
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
                   const hasM = r.mods && r.mods.length > 0;
                   const dBase = r.t + 0.3;
                   const dFinal = hasM ? r.t + 1.0 : r.t + 0.3;
@@ -1030,7 +1054,11 @@ const { useState, useEffect, useMemo, useRef } = React;
           );
           const contextualFx = <window.LocalPlayerContext.Provider value={localPlayerId}>{fxEl}</window.LocalPlayerContext.Provider>;
           // 全屏與一般動畫皆 portal 到 body，點擊區才能蓋到 D 區手牌
+<<<<<<< HEAD
           return createPortal(contextualFx, document.body);
+=======
+          return ReactDOM.createPortal(contextualFx, document.body);
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
         }
         // ==== FX END ====
 ;Object.assign(window, { playedCardsOf, FX_KIND, FX_DURATION, PASSIVE_WHY, fxHold, FX_SHOW_NONE, FX_TOTAL, FX_TOTAL_BY, FX_STAMP_TEXT, FX_STAMP_CLS, deriveFx, buildScoreFx, Avatar, FxChip, FxBack, FxMine, FxFace, FxFaceMini, FxStamp, FxOverlay });

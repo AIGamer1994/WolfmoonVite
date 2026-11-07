@@ -1,14 +1,22 @@
+<<<<<<< HEAD
 /* 防止長按選取與雙擊縮放 */
+=======
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
 * {
   -webkit-touch-callout: none !important;
   -webkit-user-select: none !important;
   user-select: none !important;
   touch-action: manipulation;
 }
+<<<<<<< HEAD
 
 .scrollbar-none::-webkit-scrollbar { display: none; }
 .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
 
+=======
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
 .hand-card {
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, border-color 0.2s ease;
 }
@@ -18,6 +26,7 @@
   box-shadow: 0 10px 20px rgba(245, 158, 11, 0.4), 0 0 15px rgba(245, 158, 11, 0.6);
   z-index: 30;
 }
+<<<<<<< HEAD
 
 /* 牌桌外殼：滿視窗置中，多餘區域當黑邊 */
 .game-shell {
@@ -43,6 +52,8 @@
   box-sizing: border-box;
 }
 
+=======
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
 @media (min-width: 600px) {
   .mobile-container {
     border-left: 1px solid rgba(51, 65, 85, 0.5);
@@ -50,13 +61,17 @@
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
   }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
 .history-scroll {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
   max-height: none;
 }
+<<<<<<< HEAD
 
 
 /* 大廳／首頁：矮視窗可捲動，名單高度收斂，開始鍵較易按到 */
@@ -73,3 +88,5 @@
     max-height: 22vh !important;
   }
 }
+=======
+>>>>>>> aaadb0b08234d2d01d85b3156c497bd13a7962ce
