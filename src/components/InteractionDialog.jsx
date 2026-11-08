@@ -88,14 +88,14 @@ export function InteractionDialog({ modal, players, humanPlayerId, playerHands, 
               <div className="flex flex-col items-center gap-2 mb-4">
                 <LocalPlayerContext.Provider value={humanPlayerId}><FxChip p={modal.infoTarget} size="w-11 h-11 text-xl" /></LocalPlayerContext.Provider>
                 {modal.infoCard ? (
-                  <div className="w-[130px] h-[180px] bg-slate-900 border-2 border-cyan-500/80 rounded-xl p-2 flex flex-col justify-between shadow-[0_0_12px_rgba(6,182,212,0.3)]">
-                    <span className="bg-cyan-500 text-slate-950 text-sm font-black w-6 h-6 rounded-full flex items-center justify-center font-mono">{modal.infoCard.value}</span>
-                    <div className="w-full h-16 bg-slate-800/90 rounded-lg border border-slate-700/60 flex items-center justify-center my-1">
-                      <i className={`fa-solid ${modal.infoCard.icon} text-3xl text-cyan-400`}></i>
+                  <div className="w-[130px] h-[180px] card-face border-2 border-teal-400/80 rounded-xl p-2 flex flex-col justify-between shadow-[0_0_12px_rgba(45,212,191,0.32)]">
+                    <span className="bg-teal-400 text-slate-950 text-sm font-black w-6 h-6 rounded-full flex items-center justify-center font-mono">{modal.infoCard.value}</span>
+                    <div className="w-full h-16 bg-teal-950/50 rounded-lg border border-teal-500/25 flex items-center justify-center my-1">
+                      <i className={`fa-solid ${modal.infoCard.icon} text-3xl text-teal-300`}></i>
                     </div>
                     <div className="text-center">
-                      <div className="text-xs font-black text-slate-100 truncate tracking-wide">{modal.infoCard.title}</div>
-                      <div className="text-[8.5px] text-slate-300 line-clamp-3 leading-tight mt-0.5">{modal.infoCard.desc}</div>
+                      <div className="text-xs font-black text-teal-200 truncate tracking-wide">{modal.infoCard.title}</div>
+                      <div className="text-[8.5px] text-teal-50/80 line-clamp-3 leading-tight mt-1 border border-teal-500/25 rounded px-1 py-0.5 bg-black/20">{modal.infoCard.desc}</div>
                     </div>
                   </div>
                 ) : <span className="text-xs text-slate-400">無手牌</span>}

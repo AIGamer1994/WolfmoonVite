@@ -31,7 +31,7 @@ export function GameBoard(props) {
   return (
     <>
     {/* A區: 版本設定區 */}
-    <header className="h-[4.5%] min-h-[32px] bg-slate-900/90 backdrop-blur border-b border-cyan-900/40 px-3 flex items-center justify-between z-[80] shrink-0">
+    <header className="h-[4.5%] min-h-[32px] zone-a backdrop-blur border-b px-3 flex items-center justify-between z-[80] shrink-0">
       <div className="flex items-center">
         <span className="text-[10px] font-mono font-bold text-cyan-400 tracking-tight">
           {version}
@@ -66,7 +66,7 @@ export function GameBoard(props) {
 
     {/* B區: 動態區（固定一列，可由 A 區「動態」開關；可點播放當前動畫） */}
     {showBroadcast && (
-      <div className="shrink-0 px-2 py-1 border-b border-slate-800/80 bg-slate-900/70 z-[70]">
+      <div className="shrink-0 px-2 py-1 zone-b border-b z-[70]">
         <div key={broadcastEvent ? broadcastEvent.key : 'plain'} className={`w-full bg-slate-900/95 border px-2 py-1 rounded-lg shadow flex items-stretch gap-1.5 min-h-[36px] ${broadcastEvent ? (broadcastEvent.type === 'out' ? 'event-out' : 'event-revive') : 'border-emerald-500/50'}`}>
           <div className="flex-1 min-w-0 flex flex-col justify-center">
             <div className="flex items-center space-x-1.5 overflow-hidden">
@@ -101,7 +101,7 @@ export function GameBoard(props) {
     )}
 
     {/* C區: 牌庫數目區（點牌庫／暗牌可開彈窗，同現有） */}
-    <div className="shrink-0 px-2 py-1 border-b border-slate-800/80 bg-slate-900/50 flex items-center justify-between gap-1 z-[70]">
+    <div className="shrink-0 px-2 py-1 zone-c border-b flex items-center justify-between gap-1 z-[70]">
       <div className="flex items-center space-x-1 bg-slate-900/90 border border-amber-500/40 px-2 py-0.5 rounded-full text-[9.5px] shadow">
         <i className="fa-solid fa-moon text-amber-400"></i>
         <span className="text-slate-400">月亮</span>
@@ -130,7 +130,7 @@ export function GameBoard(props) {
     </div>
 
     {/* D區: 除自己以外的玩家（左＝下家 … 右＝上家；名字與框底多留空白） */}
-    <section className="shrink-0 bg-slate-900/60 border-b border-slate-800/80 px-1 py-0.5 flex items-center overflow-hidden gap-1" style={{ minHeight: 50 }}>
+    <section className="shrink-0 zone-d border-b px-1 py-0.5 flex items-center overflow-hidden gap-1" style={{ minHeight: 50 }}>
       {otherPlayersOrdered.map((player) => {
         const idx = players.findIndex(p => p.id === player.id);
         const isTurn = currentTurnIndex === idx;
@@ -165,7 +165,7 @@ export function GameBoard(props) {
     </section>
 
     {/* E區: 面前區 — 上：各對手面前牌（對齊 D）；中：出牌／動畫；下：自己面前牌 */}
-    <main ref={arenaRef} className="flex-1 min-h-0 bg-gradient-to-b from-slate-950 via-slate-900/80 to-slate-950 px-1.5 pt-0 pb-0.5 flex flex-col relative overflow-hidden">
+    <main ref={arenaRef} className="zone-e flex-1 min-h-0 px-1.5 pt-0 pb-0.5 flex flex-col relative overflow-hidden">
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
 
       {/* 拖曳手牌時的放開區提示 */}
@@ -200,7 +200,7 @@ export function GameBoard(props) {
                           type="button"
                           key={(c.id || c.title) + '-' + i}
                           onClick={(e) => { e.stopPropagation(); setArenaFocus({ ...c, playedBy: player.name }); }}
-                          className={`absolute left-1/2 -translate-x-1/2 w-[96%] rounded-md bg-slate-900 shadow flex flex-col items-center justify-center px-0.5 py-0.5 active:scale-95 ${borderCls}`}
+                          className={`absolute left-1/2 -translate-x-1/2 w-[96%] rounded-md card-face shadow flex flex-col items-center justify-center px-0.5 py-0.5 active:scale-95 ${borderCls}`}
                           style={{ top: n === 1 ? 0 : step * (n - 1), height: fullH, zIndex: i + 1 }}
                           title={`${c.value} ${c.title}${active ? '（生效中）' : ''}`}
                         >
@@ -215,7 +215,7 @@ export function GameBoard(props) {
                         type="button"
                         key={(c.id || c.title) + '-' + i}
                         onClick={(e) => { e.stopPropagation(); setArenaFocus({ ...c, playedBy: player.name }); }}
-                        className={`absolute left-1/2 -translate-x-1/2 w-[96%] rounded-md bg-slate-900 shadow flex items-start overflow-hidden active:scale-95 ${borderCls}`}
+                        className={`absolute left-1/2 -translate-x-1/2 w-[96%] rounded-md card-face shadow flex items-start overflow-hidden active:scale-95 ${borderCls}`}
                         style={{ top: i * step, height: foldedH, zIndex: i + 1 }}
                         title={`${c.value} ${c.title}${active ? '（生效中）' : ''}`}
                       >
@@ -284,7 +284,7 @@ export function GameBoard(props) {
               <button
                 type="button"
                 onClick={() => setArenaFocus(c)}
-                className="relative w-[96px] h-[140px] rounded-xl border-2 border-amber-400/90 bg-slate-900 shadow-xl overflow-hidden active:scale-95 animate-card-play select-none"
+                className="relative w-[96px] h-[140px] rounded-xl border-2 border-amber-400/90 card-face shadow-[0_0_18px_rgba(245,158,11,0.35)] overflow-hidden active:scale-95 animate-card-play select-none"
               >
                 <div className="h-full p-1.5 flex flex-col justify-between">
                   <div className="flex items-start justify-between gap-0.5">
@@ -328,7 +328,7 @@ export function GameBoard(props) {
                     type="button"
                     key={(c.id || c.title) + '-' + i}
                     onClick={(e) => { e.stopPropagation(); setArenaFocus({ ...c, playedBy: me.name }); }}
-                    className={`absolute top-0 rounded-md border-2 bg-slate-900 shadow flex flex-col items-center justify-center px-1 py-1 active:scale-95 ${active ? 'border-emerald-400' : 'border-amber-400/80'}`}
+                    className={`absolute top-0 rounded-md border-2 card-face shadow flex flex-col items-center justify-center px-1 py-1 active:scale-95 ${active ? 'border-emerald-400' : 'border-amber-400/80'}`}
                     style={{ left: i * (cardW - overlap), width: cardW, height: 70, zIndex: i + 1 }}
                     title={`${c.value} ${c.title}${active ? '（生效中）' : ''}`}
                   >
@@ -346,7 +346,7 @@ export function GameBoard(props) {
       {/* 點面前的牌：完整檢視（數值／圖示／名稱／說明） */}
       {arenaFocus && (
         <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/55" onClick={() => setArenaFocus(null)}>
-          <div className="relative w-40 h-[210px] bg-slate-900 border-2 border-amber-400 rounded-2xl p-3 flex flex-col justify-between shadow-2xl animate-arena-focus" onClick={e => e.stopPropagation()}>
+          <div className="relative w-40 h-[210px] card-face border-2 border-amber-400 rounded-2xl p-3 flex flex-col justify-between shadow-2xl animate-arena-focus" onClick={e => e.stopPropagation()}>
             <div className="flex justify-between items-start">
               <span className="bg-amber-500 text-slate-950 text-base font-black w-8 h-8 rounded-full flex items-center justify-center font-mono">{arenaFocus.value}</span>
               {arenaFocus.isMoon && <span className="text-[10px] bg-slate-800 text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded font-bold">{arenaFocus.category || '月亮'}</span>}
@@ -374,7 +374,7 @@ export function GameBoard(props) {
     </main>
 
     {/* F區: 手牌區（自己頭像固定左上） */}
-    <footer className="hand-dock h-[30%] min-h-[210px] bg-gradient-to-t from-slate-950 via-slate-900 to-slate-950 border-t border-slate-800 p-2 relative shrink-0 flex items-center justify-center">
+    <footer className="hand-dock h-[30%] min-h-[210px] zone-f border-t p-2 relative shrink-0 flex items-center justify-center">
       {gameOver && victoryDismissed && (
         <div className="absolute inset-0 z-40 flex items-center justify-center bg-slate-950/90">
           <button onClick={handleNextGame} disabled={!canStartNextGame || nextGameBusy || (onlineSession && iAmReadyNext)} className="flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 text-base font-black px-8 py-3 rounded-2xl shadow-lg active:scale-95 animate-pulse disabled:cursor-not-allowed disabled:opacity-60">
@@ -433,9 +433,9 @@ export function GameBoard(props) {
           <div className={`absolute left-1.5 bottom-1.5 z-30 flex flex-col items-center gap-0.5 pointer-events-none ${stale ? 'opacity-50' : ''}`}>
             <span className="text-[7px] leading-none font-black text-sky-300"><i className="fa-solid fa-eye mr-0.5"></i>先知{stale ? '・舊資訊' : ''}</span>
             <LocalPlayerContext.Provider value={humanPlayerId}><FxChip p={tp} size="w-7 h-7 text-sm" /></LocalPlayerContext.Provider>
-            <div className="w-9 h-[50px] shrink-0 overflow-hidden rounded-md border-2 border-cyan-500/80 bg-slate-900 flex flex-col items-center justify-center shadow">
+            <div className="w-9 h-[50px] shrink-0 overflow-hidden rounded-md border-2 border-teal-400/80 card-face flex flex-col items-center justify-center shadow">
               <span className="font-mono font-black text-amber-300 text-[11px] leading-none">{c.value}</span>
-              <i className={`fa-solid ${c.icon || 'fa-circle'} text-cyan-400 text-[11px] my-0.5`}></i>
+              <i className={`fa-solid ${c.icon || 'fa-circle'} text-teal-300 text-[11px] my-0.5`}></i>
               <span className="text-[7px] font-black text-slate-100 leading-none whitespace-nowrap">{c.title}</span>
             </div>
           </div>
@@ -480,19 +480,19 @@ export function GameBoard(props) {
                   onPointerMove={handleHandPointerMove}
                   onPointerUp={handleHandPointerUp}
                   onPointerCancel={handleHandPointerCancel}
-                  className={`hand-card relative w-[130px] h-[190px] bg-slate-900 border-2 rounded-xl p-2 flex flex-col justify-between shrink-0 cursor-grab active:cursor-grabbing touch-none select-none ${dragGhost && dragGhost.card.id === card.id ? 'opacity-30' : ''} ${drawAnim && drawAnim.card && drawAnim.card.id === card.id ? 'opacity-0' : ''} ${
-                    isSelected ? 'selected border-amber-400' : 'border-cyan-500/80 hover:border-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.3)]'
+                  className={`hand-card relative w-[130px] h-[190px] card-face border-2 rounded-xl p-2 flex flex-col justify-between shrink-0 cursor-grab active:cursor-grabbing touch-none select-none ${dragGhost && dragGhost.card.id === card.id ? 'opacity-30' : ''} ${drawAnim && drawAnim.card && drawAnim.card.id === card.id ? 'opacity-0' : ''} ${
+                    isSelected ? 'selected border-amber-400' : 'border-teal-400/80 hover:border-teal-300 shadow-[0_0_14px_rgba(45,212,191,0.32)]'
                   }`}
                 >
                   <div className="flex justify-between items-center">
-                    <span className={`${isSelected ? 'bg-amber-500' : 'bg-cyan-500'} text-slate-950 text-sm font-black w-6 h-6 rounded-full flex items-center justify-center font-mono`}>{card.value}</span>
+                    <span className={`${isSelected ? 'bg-amber-500' : 'bg-teal-400'} text-slate-950 text-sm font-black w-6 h-6 rounded-full flex items-center justify-center font-mono`}>{card.value}</span>
                   </div>
-                  <div className="w-full h-16 bg-slate-800/90 rounded-lg border border-slate-700/60 flex items-center justify-center my-1">
-                    <i className={`fa-solid ${card.icon} text-3xl text-cyan-400 filter drop-shadow`}></i>
+                  <div className="w-full h-16 bg-teal-950/50 rounded-lg border border-teal-500/25 flex items-center justify-center my-1">
+                    <i className={`fa-solid ${card.icon} text-3xl text-teal-300 filter drop-shadow`}></i>
                   </div>
                   <div className="text-center">
-                    <div className="text-xs font-black text-slate-100 truncate tracking-wide">{card.title}</div>
-                    <div className="text-[8.5px] text-slate-300 line-clamp-3 leading-tight mt-0.5">{card.desc}</div>
+                    <div className="text-xs font-black text-teal-200 truncate tracking-wide">{card.title}</div>
+                    <div className="text-[8.5px] text-teal-50/80 line-clamp-3 leading-tight mt-1 border border-teal-500/25 rounded px-1 py-0.5 bg-black/20">{card.desc}</div>
                   </div>
                 </div>
               );
@@ -514,21 +514,21 @@ export function GameBoard(props) {
                 <div style={{ animation: `fxDrawPop ${0.68 * k}s ease-in-out ${0.72 * k}s both` }}>
                   <div className="relative w-[130px] h-[190px]">
                     <div className="absolute inset-0" style={{ animation: `fxFlipOut ${0.18 * k}s ease-in ${0.5 * k}s both` }}>
-                      <div className="w-full h-full rounded-xl border-2 border-amber-500/70 bg-gradient-to-br from-indigo-900 to-slate-800 flex items-center justify-center shadow-xl">
+                      <div className="w-full h-full rounded-xl border-2 border-amber-500/70 bg-gradient-to-br from-teal-950 to-slate-900 flex items-center justify-center shadow-xl">
                         <i className="fa-solid fa-moon text-amber-400/80 text-3xl"></i>
                       </div>
                     </div>
                     <div className="absolute inset-0" style={{ animation: `fxFlipIn ${0.22 * k}s ease-out ${0.68 * k}s both` }}>
-                      <div className="w-full h-full bg-slate-900 border-2 border-cyan-500/80 rounded-xl p-2 flex flex-col justify-between" style={{ animation: `fxDrawGlow ${0.68 * k}s ease-in-out ${0.72 * k}s both` }}>
+                      <div className="w-full h-full card-face border-2 border-teal-400/80 rounded-xl p-2 flex flex-col justify-between" style={{ animation: `fxDrawGlow ${0.68 * k}s ease-in-out ${0.72 * k}s both` }}>
                         <div className="flex justify-between items-center">
-                          <span className="bg-cyan-500 text-slate-950 text-sm font-black w-6 h-6 rounded-full flex items-center justify-center font-mono">{c.value}</span>
+                          <span className="bg-teal-400 text-slate-950 text-sm font-black w-6 h-6 rounded-full flex items-center justify-center font-mono">{c.value}</span>
                         </div>
-                        <div className="w-full h-16 bg-slate-800/90 rounded-lg border border-slate-700/60 flex items-center justify-center my-1">
-                          <i className={`fa-solid ${c.icon} text-3xl text-cyan-400 filter drop-shadow`}></i>
+                        <div className="w-full h-16 bg-teal-950/50 rounded-lg border border-teal-500/25 flex items-center justify-center my-1">
+                          <i className={`fa-solid ${c.icon} text-3xl text-teal-300 filter drop-shadow`}></i>
                         </div>
                         <div className="text-center">
-                          <div className="text-xs font-black text-slate-100 truncate tracking-wide">{c.title}</div>
-                          <div className="text-[8.5px] text-slate-300 line-clamp-3 leading-tight mt-0.5">{c.desc}</div>
+                          <div className="text-xs font-black text-teal-200 truncate tracking-wide">{c.title}</div>
+                          <div className="text-[8.5px] text-teal-50/80 line-clamp-3 leading-tight mt-1 border border-teal-500/25 rounded px-1 py-0.5 bg-black/20">{c.desc}</div>
                         </div>
                       </div>
                     </div>

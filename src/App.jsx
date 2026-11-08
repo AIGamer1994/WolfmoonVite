@@ -3456,7 +3456,7 @@ function App() {
         style={{ width: GAME_DESIGN_W * gameScale, height: GAME_DESIGN_H * gameScale }}
       >
       <div
-        className="mobile-container flex flex-col justify-between bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 relative overflow-hidden"
+        className="mobile-container board-bg flex flex-col justify-between relative overflow-hidden"
         style={{
           width: GAME_DESIGN_W,
           height: GAME_DESIGN_H,
@@ -3727,17 +3727,17 @@ function App() {
       {/* 長按放大的手牌（放開即關閉） */}
       {zoomCard && (
         <div className="fixed inset-0 z-[75] flex items-center justify-center bg-slate-950/70 pointer-events-none">
-          <div className="w-[250px] h-[360px] bg-slate-900 border-2 border-cyan-400 rounded-2xl p-4 flex flex-col justify-between shadow-[0_0_30px_rgba(6,182,212,0.5)]">
+          <div className="w-[250px] h-[360px] card-face border-2 border-teal-300 rounded-2xl p-4 flex flex-col justify-between shadow-[0_0_30px_rgba(45,212,191,0.5)]">
             <div className="flex justify-between items-center">
-              <span className="bg-cyan-500 text-slate-950 text-xl font-black w-10 h-10 rounded-full flex items-center justify-center font-mono">{zoomCard.value}</span>
+              <span className="bg-teal-400 text-slate-950 text-xl font-black w-10 h-10 rounded-full flex items-center justify-center font-mono">{zoomCard.value}</span>
               <span className="text-[11px] text-slate-400 font-bold">{zoomCard.category}</span>
             </div>
-            <div className="w-full h-32 bg-slate-800/90 rounded-xl border border-slate-700/60 flex items-center justify-center my-2">
-              <i className={`fa-solid ${zoomCard.icon} text-6xl text-cyan-400 filter drop-shadow`}></i>
+            <div className="w-full h-32 bg-teal-950/50 rounded-xl border border-teal-500/25 flex items-center justify-center my-2">
+              <i className={`fa-solid ${zoomCard.icon} text-6xl text-teal-300 filter drop-shadow`}></i>
             </div>
             <div className="text-center">
-              <div className="text-xl font-black text-slate-100 tracking-wide">{zoomCard.title}</div>
-              <div className="text-sm text-slate-300 leading-snug mt-2">{zoomCard.desc}</div>
+              <div className="text-xl font-black text-teal-200 tracking-wide">{zoomCard.title}</div>
+              <div className="text-sm text-teal-50/85 leading-snug mt-2 border border-teal-500/25 rounded-lg px-2 py-1 bg-black/20">{zoomCard.desc}</div>
             </div>
           </div>
         </div>
@@ -3746,16 +3746,16 @@ function App() {
       {/* 拖曳中的手牌（浮動，不影響版面） */}
       {dragGhost && (
         <div className="fixed z-[70] pointer-events-none" style={{ left: dragGhost.x, top: dragGhost.y, transform: 'translate(-50%, -60%) rotate(-3deg) scale(0.9)' }}>
-          <div className={`w-[130px] h-[190px] bg-slate-900 border-2 rounded-xl p-2 flex flex-col justify-between shadow-2xl ${dragGhost.over ? 'border-emerald-400 shadow-[0_0_22px_rgba(52,211,153,0.7)]' : 'border-amber-400'}`}>
+          <div className={`w-[130px] h-[190px] card-face border-2 rounded-xl p-2 flex flex-col justify-between shadow-2xl ${dragGhost.over ? 'border-emerald-400 shadow-[0_0_22px_rgba(52,211,153,0.7)]' : 'border-amber-400'}`}>
             <div className="flex justify-between items-center">
               <span className="bg-amber-500 text-slate-950 text-sm font-black w-6 h-6 rounded-full flex items-center justify-center font-mono">{dragGhost.card.value}</span>
             </div>
-            <div className="w-full h-16 bg-slate-800/90 rounded-lg border border-slate-700/60 flex items-center justify-center my-1">
+            <div className="w-full h-16 bg-teal-950/50 rounded-lg border border-teal-500/25 flex items-center justify-center my-1">
               <i className={`fa-solid ${dragGhost.card.icon} text-3xl text-amber-400`}></i>
             </div>
             <div className="text-center">
-              <div className="text-xs font-black text-slate-100 truncate">{dragGhost.card.title}</div>
-              <div className="text-[8.5px] text-slate-300 line-clamp-3 leading-tight mt-0.5">{dragGhost.card.desc}</div>
+              <div className="text-xs font-black text-teal-200 truncate">{dragGhost.card.title}</div>
+              <div className="text-[8.5px] text-teal-50/80 line-clamp-3 leading-tight mt-1 border border-teal-500/25 rounded px-1 py-0.5 bg-black/20">{dragGhost.card.desc}</div>
             </div>
           </div>
         </div>

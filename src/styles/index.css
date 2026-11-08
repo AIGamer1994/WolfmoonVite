@@ -73,3 +73,22 @@
     max-height: 22vh !important;
   }
 }
+
+/* 牌桌背景：顏色由 theme.css 的 --board-bg-* 控制 */
+.board-bg {
+  background: radial-gradient(ellipse 95% 62% at 50% 36%,
+    var(--board-bg-center) 0%, var(--board-bg-mid) 55%, var(--board-bg-edge) 100%);
+}
+
+/* 卡牌底色：顏色由 theme.css 的 --card-face-bg 控制 */
+.card-face {
+  background: var(--card-face-bg);
+}
+
+/* 牌桌各區獨立顏色：數值在 theme.css 的 --zone-x-bg / --zone-x-border */
+.zone-a { background: var(--zone-a-bg); border-color: var(--zone-a-border); }
+.zone-b { background: var(--zone-b-bg); border-color: var(--zone-b-border); }
+.zone-c { background: var(--zone-c-bg); border-color: var(--zone-c-border); }
+.zone-d { background: var(--zone-d-bg); border-color: var(--zone-d-border); }
+.zone-e { background: var(--zone-e-bg); border-color: var(--zone-e-border); }
+.zone-f { background: var(--zone-f-bg); border-color: var(--zone-f-border); }
