@@ -1,0 +1,75 @@
+/* 防止長按選取與雙擊縮放 */
+* {
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  touch-action: manipulation;
+}
+
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+.hand-card {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.hand-card.selected {
+  transform: translateY(-12px) scale(1.04);
+  border-color: rgb(var(--rgb-amber));
+  box-shadow: 0 10px 20px rgba(var(--rgb-amber), 0.4), 0 0 15px rgba(var(--rgb-amber), 0.6);
+  z-index: 30;
+}
+
+/* 牌桌外殼：滿視窗置中，多餘區域當黑邊 */
+.game-shell {
+  width: 100vw;
+  height: 100dvh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(var(--rgb-bg-deep));
+  overflow: hidden;
+}
+
+/* 縮放外框：佔用縮放後的版面空間，避免留白錯位 */
+.game-scale-frame {
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* 遊戲本體：固定設計尺寸，由 JS transform scale 等比縮放（含卡牌） */
+.mobile-container {
+  box-sizing: border-box;
+}
+
+@media (min-width: 600px) {
+  .mobile-container {
+    border-left: 1px solid rgba(var(--rgb-border), 0.5);
+    border-right: 1px solid rgba(var(--rgb-border), 0.5);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  }
+}
+
+.history-scroll {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  max-height: none;
+}
+
+
+/* 大廳／首頁：矮視窗可捲動，名單高度收斂，開始鍵較易按到 */
+.lobby-shell {
+  -webkit-overflow-scrolling: touch;
+}
+@media (max-height: 720px) {
+  .lobby-player-list {
+    max-height: 28vh !important;
+  }
+}
+@media (max-height: 560px) {
+  .lobby-player-list {
+    max-height: 22vh !important;
+  }
+}

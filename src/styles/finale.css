@@ -1,0 +1,30 @@
+
+
+        @keyframes fxMoonRise { 0% { transform: translateY(150px) scale(.8); opacity: 0; } 25% { opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+        @keyframes fxRedPulse { 0% { opacity: .35; } 100% { opacity: 1; } }
+        /* 狼月降臨：咬向鏡頭演出 */
+        @keyframes fxFlashW { 0% { opacity: .6; } 100% { opacity: 0; } }
+        @keyframes fxJawOpenT { 0% { transform: translateY(-110%); } 100% { transform: translateY(-60%); } }
+        @keyframes fxJawOpenB { 0% { transform: translateY(110%); } 100% { transform: translateY(60%); } }
+        @keyframes fxJawSlamT { 0% { transform: translateY(-60%); } 100% { transform: translateY(0); } }
+        @keyframes fxJawSlamB { 0% { transform: translateY(60%); } 100% { transform: translateY(0); } }
+        @keyframes fxFlood { 0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 0; } }
+
+        /* 吸血鬼降臨：黃月＋黑城堡 ➔ 蝙蝠群 ➔ 血潮 ➔ 展翅結尾 */
+        @keyframes vpMoonRise { 0% { transform: translateY(190px) scale(.6); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+        @keyframes vpFlap { 0% { transform: scaleY(1); } 100% { transform: scaleY(.35); } }
+        @keyframes vpBatFly {
+          0% { opacity: 0; transform: translate(0, 0) scale(.2); }
+          12% { opacity: 1; }
+          55% { transform: translate(calc(var(--ex) * .55), calc(var(--ey) * .4 - 20px)) scale(calc(var(--s) * .8)); }
+          100% { opacity: 1; transform: translate(var(--ex), var(--ey)) scale(var(--s)); }
+        }
+        @keyframes vpFlood { 0% { transform: translateY(-100%); } 100% { transform: translateY(-6%); } }
+        @keyframes vpTitle {
+          0% { opacity: 0; transform: scale(1.7); letter-spacing: .6em; filter: blur(8px); }
+          100% { opacity: 1; transform: scale(1); letter-spacing: .18em; filter: blur(0); }
+        }
+        @keyframes vpWing { 0% { transform: scaleX(0); opacity: 0; } 100% { transform: scaleX(1); opacity: 1; } }
+        @keyframes vpAvaGlow { 0% { box-shadow: 0 0 0 3px rgba(var(--rgb-danger), .3), 0 0 16px 3px rgba(var(--rgb-danger), .7); } 100% { box-shadow: 0 0 0 5px rgba(var(--rgb-danger), .5), 0 0 30px 8px rgba(var(--rgb-danger), 1); } }
+        @keyframes vpDrop { 0% { transform: translateY(0); opacity: 0; } 8% { opacity: .95; } 100% { transform: translateY(380px); opacity: .9; } }
+        .vp-bat-svg { width: 100%; height: 100%; fill: #000; stroke: rgb(var(--rgb-gold)); stroke-width: 1.1; animation: vpFlap .13s ease-in-out infinite alternate; transform-origin: 50% 60%; filter: drop-shadow(0 0 4px rgba(var(--rgb-gold), .9)); }
