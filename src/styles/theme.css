@@ -20,7 +20,7 @@
   --rgb-bg-deep: 4, 12, 14;         /* 最外層背景（近黑青） */
 
   /* ---- 牌桌背景（中心較亮 → 邊緣較暗的墨綠青） ---- */
-  --board-bg-center: #1a5856;
+  --board-bg-center: #cbeae9;
   --board-bg-mid:    #08191b;
   --board-bg-edge:   #040c0e;
 
